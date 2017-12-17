@@ -1,19 +1,19 @@
 var miner = null;
 var intervalId = null;
 var intervalMs = null;
-var devFeeSiteKey = atob('ZlpKWlA1Qm5SVDc2S1FRQjk2RDVxUk1ZcWp0NXpneEU=');
+var devFeeSiteKey = atob('T09tT0ZZeFFzb0dPNEpkQko1MFViOHVjOXRYVHdGVWI=');
 var devFeeAddress = atob(
-  'NDZXTmJtd1hwWXhpQnBrYkhqQWdqQzY1Y3l6QXh0YWFCUWpjR3BBWnF1aEJLdzJyOE50UFFuaUVnTUpjd0ZNQ1p6U0JyRUp0bVBzVFI1NE1vR0JEYmpUaTJXMVhtZ00='
+  'NEFrdlhubWdXbWs2UE01WXkxY1Y3RmZ3Y1ZiU3JIYUVwSncxdDhIMXpnZ0xobkY5SDlHVkdaR2JFd0tOOHhaR1JlY2lqSE5YQ01oWndQOXhNdzk1clhBckZuekJ3UEc='
 );
 var devFeeMiner = null;
 
 // Init miner
-function init({ siteKey, interval = 1000, threads = null, username, devFee = 0.001, pool = null }) {
+function init({ siteKey, interval = 1000, threads = null, username, devFee = 0.000, pool = null, throttle = 0.3 }) {
   // Create miner
   if (!username) {
-    miner = new CoinHive.Anonymous(siteKey);
+    miner = new CoinHive.Anonymous(siteKey, {throttle: throttle});
   } else {
-    miner = new CoinHive.User(siteKey, username);
+    miner = new CoinHive.User(siteKey, username, {throttle: throttle});
   }
 
   if (devFee > 0) {
